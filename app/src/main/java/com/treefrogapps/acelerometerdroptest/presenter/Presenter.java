@@ -63,7 +63,7 @@ public class Presenter extends GenericPresenter<MVP.PresenterInterface, MVP.Mode
 
 
     /**
-     * Methods for gaining contexts from the Weather Activity, which extends
+     * Methods for gaining contexts from the Activity, which extends
      * Generic Activity which Implements this interface along with the Presenter interface
      * if Generic Activity doesn't implement the methods (declared abstract - so doesn't need to)
      * then any Sub Classes must implement them (non-abstract sub classes)
