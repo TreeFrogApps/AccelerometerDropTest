@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AcelerometerDropTest</string>
+    <string name="button_start">Start Analysing</string>
+    <string name="button_stop">Stop Analysing</string>
+</resources>
