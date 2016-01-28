@@ -101,7 +101,7 @@ public class SensorTestActivity extends GenericActivity<MVP.ViewInterface,
 
         // App being changing configurations if isChangingConfigurations returns true.
         // Notify other layers if not true i.e. App is closing, to perform
-        // any necessary clean up operations (unbind service)
+        // any necessary clean up operations.
         getPresenter().onDestroy(isChangingConfigurations());
     }
 
