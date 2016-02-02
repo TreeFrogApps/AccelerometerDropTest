@@ -287,5 +287,16 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 
+   <TextView
+       android:id="@+id/direction"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:paddingTop="16dp"
+       android:textStyle="bold"
+       android:textSize="24sp"
+       android:gravity="center_horizontal"
+       android:textColor="@android:color/holo_green_light"/>
+
+
 
 </LinearLayout>

@@ -95,17 +95,19 @@ public class Presenter extends GenericPresenter<MVP.PresenterInterface, MVP.Mode
 
             Log.d(TAG, "App Shutting Down");
 
+            stopSensorAnalysing();
+
             getModel().onDestroy();
         }
 
     }
 
     @Override
-    public void displayResults(float[] rawXYZ, float[] gravityXYZ, float[] accelerationXYZ) {
+    public void displayResults(float[] rawXYZ, float[] gravityXYZ, float[] accelerationXYZ, String direction) {
 
         if (mViewInterface != null){
 
-            mViewInterface.get().displayResults(rawXYZ, gravityXYZ, accelerationXYZ);
+            mViewInterface.get().displayResults(rawXYZ, gravityXYZ, accelerationXYZ, direction);
         }
     }
 

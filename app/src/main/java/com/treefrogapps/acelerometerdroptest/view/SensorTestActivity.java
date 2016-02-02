@@ -21,7 +21,7 @@ public class SensorTestActivity extends GenericActivity<MVP.ViewInterface,
     private static final String TAG = SensorTestActivity.class.getSimpleName();
 
     private Button  mStartButton, mStopButton;
-    private TextView mRawX, mRawY, mRawZ, mGravX, mGravY, mGravZ, mAccelX, mAccelY, mAccelZ;
+    private TextView mRawX, mRawY, mRawZ, mGravX, mGravY, mGravZ, mAccelX, mAccelY, mAccelZ, mDirection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,8 @@ public class SensorTestActivity extends GenericActivity<MVP.ViewInterface,
         mAccelY = (TextView) findViewById(R.id.accelY);
         mAccelZ = (TextView) findViewById(R.id.accelZ);
 
+        mDirection = (TextView) findViewById(R.id.direction);
+
     }
 
     @Override
@@ -75,7 +77,7 @@ public class SensorTestActivity extends GenericActivity<MVP.ViewInterface,
     }
 
     @Override
-    public void displayResults(float[] rawXYZ, float[] gravityXYZ, float[] accelerationXYZ) {
+    public void displayResults(float[] rawXYZ, float[] gravityXYZ, float[] accelerationXYZ, String direction) {
 
         if (Presenter.isAnalysing){
 
@@ -90,8 +92,9 @@ public class SensorTestActivity extends GenericActivity<MVP.ViewInterface,
             mAccelX.setText(String.valueOf(accelerationXYZ[0]));
             mAccelY.setText(String.valueOf(accelerationXYZ[1]));
             mAccelZ.setText(String.valueOf(accelerationXYZ[2]));
-        }
 
+            mDirection.setText(direction);
+        }
     }
 
 

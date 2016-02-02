@@ -12,6 +12,7 @@ import android.util.Log;
 import com.treefrogapps.acelerometerdroptest.MVP;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 /**
  * Sensor Monitor Class - abstracted away from the Model and presenter layers
@@ -29,8 +30,9 @@ public class SensorMonitor implements SensorEventListener {
     private float[] mGravity = new float[3];
     private float[] mLinear_acceleration = new float[3];
 
-    private float mPrev;
-    private float mCurr;
+    private float mCounter = 0;
+    private ArrayList<SensorReadings> mSensorReadings = new ArrayList<>();
+    private String mDirection = "";
 
     private MediaPlayer mPlayer;
 
@@ -56,11 +58,11 @@ public class SensorMonitor implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        long curretTime = System.currentTimeMillis();
+        long currentTime = System.currentTimeMillis();
 
-        if (curretTime - mLastUpdate > 100){
+        if (currentTime - mLastUpdate > 100){
 
-            mLastUpdate = curretTime;
+            mLastUpdate = currentTime;
 
             if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
 
@@ -74,21 +76,20 @@ public class SensorMonitor implements SensorEventListener {
                 mLinear_acceleration[1] = event.values[1] - mGravity[1];
                 mLinear_acceleration[2] = event.values[2] - mGravity[2];
 
-                mCurr = mLinear_acceleration[2];
+                if (mCounter < 5){
 
-                /**
-                 * Just random algorithm to detect shaking .. basic at best!
-                 */
-                if (mCurr > mPrev){
-                    mPrev = mCurr;
-                } else if (mPrev-30 > mCurr && mCurr < 1 && mLinear_acceleration[1] <1 && mLinear_acceleration[2] < 1){
+                    mSensorReadings.add(new SensorReadings(mLinear_acceleration));
 
-                    Log.e(TAG, "shake");
-                    mPlayer.start();
-                    mPrev = 0;
+                    mCounter++;
+
+                } else {
+
+                    mDirection = SensorUtils.detectDirection(mSensorReadings);
+                    mSensorReadings.clear();
+                    mCounter = 0;
                 }
 
-                mPresenter.get().displayResults(event.values, mGravity, mLinear_acceleration);
+                mPresenter.get().displayResults(event.values, mGravity, mLinear_acceleration, mDirection);
             }
         }
     }

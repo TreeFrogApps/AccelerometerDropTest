@@ -74,7 +74,7 @@ public abstract class GenericActivity<ViewInterface,
      * @param view          Generic View Interface
      * @param presenter     Generic as Class object (required to have access to class method newInstance())
      *                      the generic Presenter is implicit reference - when Generic Activity is extended
-     *                      the the Explicit reference is made (example - see WeatherActivity)
+     *                      the Explicit reference is made (example - see App Activity)
      */
     public void initialisePresenter(ViewInterface view, Class<PresenterInstance> presenter){
 

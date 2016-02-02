@@ -20,7 +20,7 @@ public interface MVP {
      */
     interface ViewInterface extends ContextView {
 
-        void displayResults(float[] rawXYZ, float[] gravityXYZ, float[] accelerationXYZ);
+        void displayResults(float[] rawXYZ, float[] gravityXYZ, float[] accelerationXYZ, String direction);
     }
 
 
@@ -39,7 +39,7 @@ public interface MVP {
      */
     interface  PresenterInterface extends ContextView {
 
-        void displayResults(float[] rawXYZ, float[] gravityXYZ, float[] accelerationXYZ);
+        void displayResults(float[] rawXYZ, float[] gravityXYZ, float[] accelerationXYZ, String direction);
 
     }
 
